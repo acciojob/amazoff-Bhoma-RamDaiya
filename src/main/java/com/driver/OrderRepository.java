@@ -27,6 +27,8 @@ ordersDb.put(order.getId() , order);
     }
 
     public void addOrderPartnerPair(String orderId, String partnerId) {
+//        if(ordersDb.containsKey(orderId)) System.out.println(orderId+"*");
+//        if(partnerDb.containsKey(partnerId)) System.out.println(partnerId+"*");
         if(ordersDb.containsKey(orderId) &&partnerDb.containsKey(partnerId)){
             orderPartnerDb.put(orderId ,partnerId);
             List<String>currentOrder = new ArrayList<>();
@@ -34,6 +36,11 @@ ordersDb.put(order.getId() , order);
                 currentOrder = partnerOrderDb.get(partnerId);
             }
             currentOrder.add(orderId);
+//            System.out.println("start");
+//            for (String list : currentOrder){
+//                System.out.println(list);
+//            }
+//            System.out.println("end");
             partnerOrderDb.put(partnerId,currentOrder);
 //            increase the no of order of partner
             DeliveryPartner deliveryPartner = partnerDb.get(partnerId);
@@ -49,8 +56,11 @@ ordersDb.put(order.getId() , order);
     }
 
     public Integer getOrderCountByPartnerId(String partnerId) {
-        List<String> list = partnerOrderDb.get(partnerId);
-        return list.size();
+//        List<String> list = partnerOrderDb.get(partnerId);
+
+//        return list.size();
+        DeliveryPartner deliveryPartner = partnerDb.get(partnerId);
+        return deliveryPartner.getNumberOfOrders();
     }
 
     public List<String> getOrdersByPartnerId(String partnerId) {

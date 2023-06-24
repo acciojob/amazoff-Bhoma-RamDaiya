@@ -24,9 +24,7 @@ OrderService orderService;
     @PostMapping("/add-order")
     public ResponseEntity<String> addOrder(@RequestBody Order order){
         boolean f = orderService.addOrder(order);
-        if(f)
         return new ResponseEntity<>("New order added successfully", HttpStatus.CREATED);
-        else return new ResponseEntity<>("New order is not added " , HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/add-partner/{partnerId}")
@@ -74,10 +72,10 @@ OrderService orderService;
 
     @GetMapping("/get-orders-by-partner-id/{partnerId}")
     public ResponseEntity<List<String>> getOrdersByPartnerId(@PathVariable String partnerId){
-        List<String> orders = null;
+        List<String> orders = orderService.getOrdersByPartnerId(partnerId);
 
         //orders should contain a list of orders by PartnerId
-     orders = orderService.getOrdersByPartnerId(partnerId);
+
         return new ResponseEntity<>(orders, HttpStatus.CREATED);
     }
 
