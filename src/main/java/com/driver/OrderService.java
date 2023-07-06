@@ -14,8 +14,8 @@ public class OrderService {
         return orderRepository.getOrderById(orderId);
     }
 
-    public boolean addOrder(Order order) {
-        return orderRepository.addOrder(order);
+    public void addOrder(Order order) {
+        orderRepository.addOrder(order);
     }
 
     public void addPartner(String partnerId) {

@@ -17,9 +17,9 @@ public class OrderRepository {
 
 
 
-    public boolean addOrder(Order order) {
+    public void addOrder(Order order) {
 ordersDb.put(order.getId() , order);
-        return true;
+
     }
 
     public void addPartner(String partnerId) {
@@ -27,8 +27,7 @@ ordersDb.put(order.getId() , order);
     }
 
     public void addOrderPartnerPair(String orderId, String partnerId) {
-//        if(ordersDb.containsKey(orderId)) System.out.println(orderId+"*");
-//        if(partnerDb.containsKey(partnerId)) System.out.println(partnerId+"*");
+
         if(ordersDb.containsKey(orderId) &&partnerDb.containsKey(partnerId)){
             orderPartnerDb.put(orderId ,partnerId);
             List<String>currentOrder = new ArrayList<>();
